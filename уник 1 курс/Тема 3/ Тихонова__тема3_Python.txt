@@ -1,0 +1,61 @@
+﻿Python
+
+#Задача 3.3
+def vc_ch(name):
+    #ф-ция для ввода целого числа с проверкой
+    while True:
+        n=input(f'{name}')
+        try:
+            nn=int(n)
+            return nn
+        except:
+            print("Ошибка. Введите целое число")
+def pop_v_gr(n,a1,a2):
+    #ф-ция проверки попадания числа в промежуток
+    return (a1<=n<=a2)
+def vv_gr():
+    #ф-ция для ввода границ
+    a1=vc_ch("Введите начало диапазона: ")
+    while True:
+        a2=vc_ch("Введите конец диапазона: ")
+        if a2>a1: return[a1,a2]
+        else: print("Ошибка. Конец диапазона должен быть больше начала")
+def res(n1,n2,n3,a1,a2,nn):
+    print(f'Из чисел {n1},{n2},{n3}')
+    print(f'В диапазон [{a1},{a2}]')
+    print(f'Попадают следующие числа:{nn}')
+
+n1=vc_ch("Введите первое число: ")
+n2=vc_ch("Введите второе число: ")
+n3=vc_ch("Введите третье число: ")
+a1,a2=vv_gr()
+nn=[n for n in (n1,n2,n3) if pop_v_gr(n,a1,a2)]
+nn=', '.join(map(str,nn))
+res(n1,n2,n3,a1,a2,nn)
+
+#Задача 3.18
+def vc_ch(name):
+    #ф-ция для ввода целого числа с проверкой
+    while True:
+        n=input(f'{name}')
+        try:
+            nn=int(n)
+            if 1<=nn<=8:
+                return nn
+            else:
+                print("Ошибка. Число должно быть в промежутке от 1 до 8")
+        except:
+            print("Ошибка. Введите целое число")
+def vv_cor(name):
+    cor1=vc_ch(f"Введите номер строки {name} клетки: ")
+    cor2=vc_ch(f"Введите номер столбца {name} клетки: ")
+    return [cor1,cor2]
+def res(cor11,cor21,cor12,cor22):
+    if (cor11+cor21)%2==(cor12+cor22)%2:
+        print("Клетки одного цвета")
+    else:
+        print("Клетки разного цвета")
+
+cor11,cor21=vv_cor("первой")
+cor12,cor22=vv_cor("второй")
+res(cor11,cor21,cor12,cor22)

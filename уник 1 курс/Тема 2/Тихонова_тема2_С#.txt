@@ -1,0 +1,116 @@
+﻿C#
+
+using System;
+//Задача 2.9
+class Program
+{
+    static void Main(string[] args)
+    {
+        string naz1;
+        float v1;
+        float a1;
+        planet(out naz1, out v1, out a1,"1");
+        string naz2;
+        float v2;
+        float a2;
+        planet(out naz2, out v2, out a2,"2");
+        Console.Write("Введите расстояние между телами: ");
+        float rast=float.Parse(Console.ReadLine());
+        float time=ras_time(v1, v2, a1, a2, rast);
+        Console.WriteLine();
+        res(naz1,naz2,v1,v2,a1,a2,time);
+        Console.ReadKey();
+
+    } 
+    static float fl_ch(string name)
+    {
+        //Ф-ция для ввода вещественного числа
+        Console.Write($"{name}");
+        float n=float.Parse(Console.ReadLine());
+        return n;
+    }
+    static void planet(out string naz, out float v,out float a,string name)
+    {
+       ///Ф-ция для ввода данных о планете
+        Console.WriteLine($"Введите даные о планете номер {name}");
+        Console.Write("Введите название планет: ");
+        naz=Console.ReadLine();
+        v=fl_ch("Введите начальную скорость: ");
+        a=fl_ch("Введите ускорение: ");
+    }
+    static public float ras_time(float v1,float v2,float a1,float a2,float rast)
+    {
+        //Ф-ция для нахождения времени
+        float a=(a1+a2)/2.0f;
+        float b=v1+v2;
+        float d=b*b+4*a*rast;
+        float t=((-1)*b+(float)(Math.Sqrt(d)))/(2.0f*a);
+        return t;
+    }
+    static void res(string naz1,string naz2,float v1,float v2,float a1,float a2,float time)
+    {
+        Console.WriteLine("Планеты с характеристиками:");
+        Console.WriteLine($"1 – {naz1}, {v1}, {a1}");
+        Console.WriteLine($"2 – {naz2}, {v2}, {a2}");
+        Console.WriteLine($"встретятся через – {time} сек");
+    }
+}
+
+
+
+
+using System;
+//Задача 2.9
+class Program
+{
+    static void Main(string[] args)
+    {
+        string naz1;
+        float v1;
+        float a1;
+        planet(out naz1, out v1, out a1,"1");
+        string naz2;
+        float v2;
+        float a2;
+        planet(out naz2, out v2, out a2,"2");
+        Console.Write("Введите расстояние между телами: ");
+        float rast=float.Parse(Console.ReadLine());
+        float time=ras_time(v1, v2, a1, a2, rast);
+        Console.WriteLine();
+        res(naz1,naz2,v1,v2,a1,a2,time);
+        Console.ReadKey();
+
+    } 
+    static float fl_ch(string name)
+    {
+        //Ф-ция для ввода вещественного числа
+        Console.Write($"{name}");
+        float n=float.Parse(Console.ReadLine());
+        return n;
+    }
+    static void planet(out string naz, out float v,out float a,string name)
+    {
+       ///Ф-ция для ввода данных о планете
+        Console.WriteLine($"Введите даные о планете номер {name}");
+        Console.Write("Введите название планет: ");
+        naz=Console.ReadLine();
+        v=fl_ch("Введите начальную скорость: ");
+        a=fl_ch("Введите ускорение: ");
+    }
+    static public float ras_time(float v1,float v2,float a1,float a2,float rast)
+    {
+        //Ф-ция для нахождения времени
+        float a=(a1+a2)/2.0f;
+        float b=v1+v2;
+        float d=b*b+4*a*rast;
+        float t=((-1)*b+(float)(Math.Sqrt(d)))/(2.0f*a);
+        return t;
+    }
+    static void res(string naz1,string naz2,float v1,float v2,float a1,float a2,float time)
+    {
+        Console.WriteLine("Планеты с характеристиками:");
+        Console.WriteLine($"1 – {naz1}, {v1}, {a1}");
+        Console.WriteLine($"2 – {naz2}, {v2}, {a2}");
+        Console.WriteLine($"встретятся через – {time} сек");
+    }
+}
