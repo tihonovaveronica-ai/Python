@@ -11,6 +11,7 @@ class Program
     }
     static int vv_ch(string name)
     {
+        //ф-ция для ввода числа с проверкой
         while (true)
         {
             Console.Write($"{name}");
@@ -24,6 +25,7 @@ class Program
     }
     static string res(int ch)
     {
+        //ф-ция для вывода результата
         string itog="";
         while (ch>0)
         {
