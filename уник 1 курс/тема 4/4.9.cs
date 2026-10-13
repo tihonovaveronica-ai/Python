@@ -1,5 +1,4 @@
 using System;
-using System.Runtime.CompilerServices;
 //Задача 4.9
 class Program
 {

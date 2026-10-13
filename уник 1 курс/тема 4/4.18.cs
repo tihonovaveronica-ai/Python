@@ -1,5 +1,4 @@
 using System;
-using System.Globalization;
 //Задача 4.18
 class Program
 {
