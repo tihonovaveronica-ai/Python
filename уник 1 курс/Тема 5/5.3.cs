@@ -42,7 +42,7 @@ class Program
        float[] mas=new float[n];
        for(int i=0;i<n;i++)
         {
-            mas[i]=vv_vch("Введите значение элемента массива: ");
+            mas[i]=vv_vch($"Введите значение {i+1} элемента массива: ");
         }
         return mas;
     }

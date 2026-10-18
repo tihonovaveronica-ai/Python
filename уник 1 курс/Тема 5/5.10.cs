@@ -1,5 +1,4 @@
 using System;
-using Microsoft.Win32.SafeHandles;
 //Задача 5.10
 class Program
 {
@@ -42,14 +41,37 @@ class Program
     static int[] vv_mass(int n,string num)
     {
        //ф-ция для ввода элементов массива
-       int[] mas=[];
+       int[] mas=new int[n];
        for(int i=0;i<n;i++)
         {
             mas[i]=vv_ch($"Введите значение {i+1} элемента {num} массива: ");
         }
+        return mas;
     }
     static void res(int[] mass1,int[] mass2)
     {
-        
+        var resu = new List<int>();
+        int col=0;
+        for(int i=0;i<mass1.Length;i++)
+        {
+            bool isin=false;
+            for(int j=0;j<mass2.Length;j++)
+            {
+                if(mass1[i]==mass1[j])
+                {
+                    isin=true;
+                    break;
+                }
+                if(isin)
+                {
+                    resu.Add(mass1[i]);
+                    col++;
+                }
+            }
+        }
+        Console.WriteLine($"Из массива: [{string.Join(", ", mass1)}]");
+        Console.WriteLine($"В данный разрешенный массив: [{string.Join(", ", mass2)}]");
+        Console.WriteLine($"Входят элементы: [{string.Join(", ", resu)}]");
+        Console.WriteLine($"Их количество: {col}");
     }
 }
