@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 //Задача 5.10
 class Program
 {
@@ -57,16 +58,16 @@ class Program
             bool isin=false;
             for(int j=0;j<mass2.Length;j++)
             {
-                if(mass1[i]==mass1[j])
+                if(mass1[i]==mass2[j])
                 {
                     isin=true;
                     break;
                 }
-                if(isin)
-                {
-                    resu.Add(mass1[i]);
-                    col++;
-                }
+            }
+            if(!isin)
+            {
+                resu.Add(mass1[i]);
+                col++;
             }
         }
         Console.WriteLine($"Из массива: [{string.Join(", ", mass1)}]");
