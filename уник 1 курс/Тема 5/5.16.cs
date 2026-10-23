@@ -1,6 +1,6 @@
 using System;
-using System.Data;
-using System.Reflection.Metadata;
+//using System.Data;
+//using System.Reflection.Metadata;
 //Задача 5.16
 class Program
 {

@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 //Задача 5.10
 class Program
 {
@@ -51,7 +50,7 @@ class Program
     }
     static void res(int[] mass1,int[] mass2)
     {
-        var resu = new List<int>();
+        int[] resu = new int[mass1.Length];
         int col=0;
         for(int i=0;i<mass1.Length;i++)
         {
@@ -66,13 +65,15 @@ class Program
             }
             if(!isin)
             {
-                resu.Add(mass1[i]);
+                resu[col] = mass1[i]; 
                 col++;
             }
         }
+        int[] result = new int[col];
+        Array.Copy(resu, result, col); 
         Console.WriteLine($"Из массива: [{string.Join(", ", mass1)}]");
         Console.WriteLine($"В данный разрешенный массив: [{string.Join(", ", mass2)}]");
-        Console.WriteLine($"Входят элементы: [{string.Join(", ", resu)}]");
+        Console.WriteLine($"Входят элементы: [{string.Join(", ", result)}]");
         Console.WriteLine($"Их количество: {col}");
     }
 }
