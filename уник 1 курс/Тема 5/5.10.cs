@@ -73,7 +73,7 @@ class Program
         Array.Copy(resu, result, col); 
         Console.WriteLine($"Из массива: [{string.Join(", ", mass1)}]");
         Console.WriteLine($"В данный разрешенный массив: [{string.Join(", ", mass2)}]");
-        Console.WriteLine($"Входят элементы: [{string.Join(", ", result)}]");
+        Console.WriteLine($"Не входят элементы: [{string.Join(", ", result)}]");
         Console.WriteLine($"Их количество: {col}");
     }
 }
