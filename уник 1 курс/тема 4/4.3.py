@@ -2,7 +2,7 @@
 def vv_ch(name):
     #ф-ция для ввода числа с проверкой
     while True:
-        n=input(f"{name}")
+        n=input(name)
         try:
             nn=int(n)
             if nn>0:
