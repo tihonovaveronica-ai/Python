@@ -1,0 +1,291 @@
+﻿Тихонова Вероника ИБ02/26б
+Тема №5
+
+С#
+using System;
+//Задача 5.3
+class Program
+{
+    static void Main()
+    {
+        int n=vv_len("Введите длину массива: ");
+        float[] mass=vv_mass(n);
+        res(mass,n);
+    }
+    static int vv_len(string name)
+    {
+        while (true)
+        {
+            //ф-ция для ввода целого числа с проверкой
+            Console.Write(name);
+            string n=Console.ReadLine();
+            if (int.TryParse(n,out int nn) && nn>=3)
+            {
+                return nn;
+            }
+            Console.WriteLine("Ошибка. Введите целое число больше 2.");
+        }
+    }
+    static float vv_vch(string name)
+    {
+        while (true)
+        {
+            //ф-ция для ввода вещественного числа с проверкой
+            Console.Write(name);
+            string n=Console.ReadLine();
+            if (float.TryParse(n,out float nn))
+            {
+                return nn;
+            }
+            Console.WriteLine("Ошибка. Введите вещественное число.");
+        }
+    }
+    static float[] vv_mass(int n)
+    {
+       //ф-ция для ввода элементов массива
+       float[] mas=new float[n];
+       for(int i=0;i<n;i++)
+        {
+            mas[i]=vv_vch($"Введите значение {i+1} элемента массива: ");
+        }
+        return mas;
+    }
+    static void res(float[] mass,int n)
+    {
+        //ф-ция для расчета и вывода результата
+        int col=0;
+        float summ=0f;
+        for (int i=1;i<n-1;i++)
+        {
+            if (mass[i]<((mass[i-1]+mass[i+1])/2))
+            {
+                col+=1;
+                summ+=mass[i];
+            }
+        }
+        Console.WriteLine($"Массив: [{string.Join(", ", mass)}]");
+        Console.WriteLine($"Найдено элементов: {col}, их сумма = {summ}");
+    }
+}
+
+
+
+using System;
+//Задача 5.10
+class Program
+{
+    static void Main(string[] args)
+    {
+        int ln1=vv_len("Введите количество элементов исходного массива: ");
+        int[] mass1=vv_mass(ln1,"исходного");
+        int ln2=vv_len("Введите количество элементов массива разрешенных значений: ");
+        int[] mass2=vv_mass(ln2,"разрешенного");
+        res(mass1,mass2);
+    }
+    static int vv_ch(string name)
+    {
+        while (true)
+        {
+            //ф-ция для ввода целого числа с проверкой
+            Console.Write($"{name}");
+            string n=Console.ReadLine();
+            if (int.TryParse(n,out int nn))
+            {
+                return nn;
+            }
+            Console.WriteLine("Ошибка. Введите целое число.");
+        }
+    }
+    static int vv_len(string name)
+    {
+        while (true)
+        {
+            //ф-ция для ввода целого натурального числа с проверкой
+            Console.Write($"{name}");
+            string n=Console.ReadLine();
+            if (int.TryParse(n,out int nn) && nn>0)
+            {
+                return nn;
+            }
+            Console.WriteLine("Ошибка. Введите целое число больше 0.");
+        }
+    }
+    static int[] vv_mass(int n,string num)
+    {
+       //ф-ция для ввода элементов массива
+       int[] mas=new int[n];
+       for(int i=0;i<n;i++)
+        {
+            mas[i]=vv_ch($"Введите значение {i+1} элемента {num} массива: ");
+        }
+        return mas;
+    }
+    static void res(int[] mass1,int[] mass2)
+    {
+        int[] resu = new int[mass1.Length];
+        int col=0;
+        for(int i=0;i<mass1.Length;i++)
+        {
+            bool isin=false;
+            for(int j=0;j<mass2.Length;j++)
+            {
+                if(mass1[i]==mass2[j])
+                {
+                    isin=true;
+                    break;
+                }
+            }
+            if(!isin)
+            {
+                resu[col] = mass1[i]; 
+                col++;
+            }
+        }
+        int[] result = new int[col];
+        Array.Copy(resu, result, col); 
+        Console.WriteLine($"Из массива: [{string.Join(", ", mass1)}]");
+        Console.WriteLine($"В данный разрешенный массив: [{string.Join(", ", mass2)}]");
+        Console.WriteLine($"Не входят элементы: [{string.Join(", ", result)}]");
+        Console.WriteLine($"Их количество: {col}");
+    }
+}
+
+
+
+
+using System;
+//Задача 5.16
+class Program
+{
+    static void Main(string[] args)
+    {
+        int ln=vv_len("Введите количество элементов массива: ");
+        float[] mass=vv_mass(ln);
+        float x=vv_vch("Введите контрольное число: ");
+        res(mass,x);
+    }
+    static int vv_len(string name)
+    {
+        while (true)
+        {
+            //ф-ция для ввода целого натурального числа с проверкой
+            Console.Write($"{name}");
+            string n=Console.ReadLine();
+            if (int.TryParse(n,out int nn) && nn>0)
+            {
+                return nn;
+            }
+            Console.WriteLine("Ошибка. Введите целое число больше 0.");
+        }
+    }
+    static float vv_vch(string name)
+    {
+        while (true)
+        {
+            //ф-ция для ввода целого числа с проверкой
+            Console.Write($"{name}");
+            string n=Console.ReadLine();
+            if (float.TryParse(n,out float nn))
+            {
+                return nn;
+            }
+            Console.WriteLine("Ошибка. Введите число.");
+        }
+    }
+    static float[] vv_mass(int n)
+    {
+       //ф-ция для ввода элементов массива
+       float[] mas=new float[n];
+       for(int i=0;i<n;i++)
+        {
+            mas[i]=vv_vch($"Введите значение {i+1} элемента массива: ");
+        }
+        return mas;
+    }
+    static void res(float[] mass,float x)
+    {
+        //ф-ция для проверки и вывода результата
+        Console.WriteLine($"Исходный массив: [{string.Join(", ",mass)}]");
+        Console.WriteLine($"Контрольное число: {x}");
+        bool istr=false;
+        for(int i=0;i<mass.Length;i++)
+        {
+            for (int j=i+1;j<mass.Length;j++)
+            {
+                if(mass[i]*mass[j]==x)
+                {
+                    Console.WriteLine($"Из {i+1} и {j+1} элемента получает контрольное число.");
+                    istr=true;
+                    break;
+                }
+            }
+        }
+        
+        if (!istr)
+        {
+            Console.WriteLine("Нет нужных значений в массиве!");
+        }
+    }
+}
+
+
+
+using System;
+//Задача 5.23
+class Program
+{
+    static void Main(string[] args)
+    {
+        int n=vv_nch("Введите количество строк: ");
+        int m=vv_nch("Введите количество столбцов: ");
+        res(n,m);
+    }
+    static int vv_nch(string name)
+    {
+        while (true)
+        {
+            //ф-ция для ввода целого числа с проверкой
+            Console.Write($"{name}");
+            string n=Console.ReadLine();
+            if (int.TryParse(n,out int nn) && nn>0)
+                return nn;
+            Console.WriteLine("Ошибка. Введите целое число больше 0.");
+        }
+    }
+    static void res(int n,int m)
+    {
+        int[,] mass=new int[n,m];
+        int top=0,bottom=n-1,left=0,right=m-1,num=1;
+        while (top<=bottom && left<=right)
+        {
+            //Заполнение массива "спиралью"
+            for (int j=left; j<=right; j++)
+                mass[top,j]=num++;
+            top++;
+            for (int i=top; i<=bottom; i++)
+                mass[i,right]=num++;
+            right--;
+            if (top<=bottom)
+            {
+                for (int j=right; j>=left; j--)
+                    mass[bottom,j]=num++;
+                bottom--;
+            }
+            if (left<=right)
+            {
+                for (int i=bottom; i>=top; i--)
+                    mass[i,left]=num++;
+                left++;
+            }
+        }
+        for (int i=0;i<n;i++)
+        {
+            for (int j=0; j<m; j++)
+                {
+                    if (j>0) Console.Write(", ");
+                        Console.Write(mass[i,j]);
+                }
+            Console.WriteLine();
+        }
+    }
+}
