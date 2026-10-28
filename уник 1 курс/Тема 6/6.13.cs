@@ -24,8 +24,7 @@ class Program
     static void res(int n)
     {
        //ф-ция для формирования и вывода результата
-       string nn=n.ToString();
-       var chisla=new Dictionary<int, string>
+       var chisla=new Dictionary<char, string>
        {
             ['0'] = "Ноль",
             ['1'] = "Один",
@@ -38,6 +37,7 @@ class Program
             ['8'] = "Восемь",
             ['9'] = "Девять"
        } ;
+       string nn=n.ToString();
        var res=new  List<string>();
        foreach(char c in nn)
             res.Add(chisla[c]);
