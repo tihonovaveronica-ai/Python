@@ -11,9 +11,9 @@ class Program
     }
     static int vv_ch(string name)
     {
+        //ф-ция для ввода целого натурального числа с проверкой
         while (true)
         {
-            //ф-ция для ввода целого натурального числа с проверкой
             Console.Write(name);
             string s=Console.ReadLine();
             if(int.TryParse(s,out int nn) && nn>0)
@@ -38,7 +38,7 @@ class Program
             ['9'] = "Девять"
        } ;
        string nn=n.ToString();
-       var res=new  List<string>();
+       var res=new List<string>();
        foreach(char c in nn)
             res.Add(chisla[c]);
         Console.WriteLine(string.Join(" ",res));

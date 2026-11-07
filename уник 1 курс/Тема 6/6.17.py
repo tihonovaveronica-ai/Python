@@ -2,8 +2,8 @@
 def vv_mass(name):
     #ф-ция для ввода массива с проверкой
     while True:
+        s= input(name).split()
         try:
-            s= input(name).split()
             return [int(x) for x in s]
         except EOFError:
             print("Ошибка. Введите последовательность целых чисел.")
