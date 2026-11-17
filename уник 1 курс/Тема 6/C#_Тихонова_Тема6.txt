@@ -1,0 +1,190 @@
+﻿Тихонова Вероника ИБ02/26б
+Тема №6
+
+C#
+
+using System;
+using System.Runtime.InteropServices;
+using System.Security.AccessControl;
+//задача 6.11
+class Program
+{
+    const string alphabet="абвгдежзийклмнопрстуфхцчшщъыьэюя";
+    static void Main()
+    {
+        string key=vv_key("Введите ключ: ");
+        string direction=vv_dir("Введите направление шифрования: ");
+        Console.Write("Введите текст на русском языке(без «ё»): ");
+        string text = Console.ReadLine();
+        res(key,text,direction);
+    }
+    static string vv_key(string name)
+    {
+        //ф-ция для ввода ключа с проверкой
+        while (true)
+        {
+            Console.Write(name);
+            string s=Console.ReadLine();
+            if (s == null)
+            {
+                Console.WriteLine("Ошибка: ключ должен состоять из русских букв (без «ё»).");
+                continue;
+            }
+            bool proverka=true;
+            foreach(char c in s)
+            {
+                if(alphabet.IndexOf(char.ToLower(c))<0)
+                {
+                    proverka=false;
+                    break;
+                }
+            }
+            if (proverka)
+                return s;
+            Console.WriteLine("Ошибка: ключ должен состоять из русских букв (без «ё»).");
+        }
+    }
+    static string vv_dir(string name)
+    {
+        //ф-ция для ввода направления с проверкой
+        while(true)
+        {
+            Console.Write(name);
+            string s=Console.ReadLine();
+            if (s == "CRYP" || s == "DECR") 
+                return s;
+            Console.WriteLine("Ошибка: введите CRYP или DECR.");
+        }
+    }
+    static void res(string key,string text,string direction)
+    {
+        //ф-ция для формирования и вывода результата
+        var res=new List<char>();
+        string alph2="абвгдежзийклмнопрстуфхцчшщъыьэюяабвгдежзийклмнопрстуфхцчшщъыьэюя";
+        int ind=0;
+        foreach(char c in text)
+        {
+            char lower=char.ToLower(c);
+            if(alphabet.IndexOf(lower)<0)
+            {
+                res.Add(c);
+                continue;
+            }
+            int sdvig=ind%key.Length;
+            char newchar;
+            if(direction=="CRYP")
+                newchar=alph2[alphabet.IndexOf(lower)+alphabet.IndexOf(key[sdvig])];
+            else
+                newchar=alph2[alphabet.IndexOf(lower)+32-alphabet.IndexOf(key[sdvig])];
+
+            if (char.IsUpper(c))
+                newchar = char.ToUpper(newchar);
+            res.Add(newchar);
+            ind++;
+        }
+        Console.WriteLine(new string(res.ToArray()));
+    }
+}
+
+
+using System;
+using System.Runtime.InteropServices.Marshalling;
+using System.Text;
+//задача 6.13
+class Program
+{
+    static void Main()
+    {
+      int n=vv_ch("Введите число: ");
+      res(n);
+    }
+    static int vv_ch(string name)
+    {
+        //ф-ция для ввода целого натурального числа с проверкой
+        while (true)
+        {
+            Console.Write(name);
+            string s=Console.ReadLine();
+            if(int.TryParse(s,out int nn) && nn>0)
+                return nn;
+            Console.WriteLine("Ошибка. Введите целое число больше 0.");
+        }
+    }
+    static void res(int n)
+    {
+       //ф-ция для формирования и вывода результата
+       var chisla=new Dictionary<char, string>
+       {
+            ['0'] = "Ноль",
+            ['1'] = "Один",
+            ['2'] = "Два",
+            ['3'] = "Три",
+            ['4'] = "Четыре",
+            ['5'] = "Пять",
+            ['6'] = "Шесть",
+            ['7'] = "Семь",
+            ['8'] = "Восемь",
+            ['9'] = "Девять"
+       } ;
+       string nn=n.ToString();
+       var res=new List<string>();
+       foreach(char c in nn)
+            res.Add(chisla[c]);
+        Console.WriteLine(string.Join(" ",res));
+    }
+}
+
+
+
+
+using System;
+using System.Diagnostics.Contracts;
+using System.Collections.Generic;
+//задача 6.17
+class Program
+{
+    static void Main()
+    {
+        List <int> n=vv_mass("Введите последовательность целых чисел: ");
+        res(n);
+    }
+    static List<int> vv_mass(string name)
+    {
+        while (true)
+        {
+            //ф-ция для ввода массива с проверкой
+            Console.Write(name);
+            string s=Console.ReadLine();
+            if (s == null)
+            {
+                Console.WriteLine("Ошибка. Введите последовательность целых чисел.");
+                continue;
+            }
+            string[] s1=s.Split(' ');
+            var chisla=new List<int>(s1.Length);
+            bool proverka=true;
+            foreach(string n in s1)
+            {
+                if(int.TryParse(n,out int nn))
+                    chisla.Add(nn);
+                else
+                {
+                    proverka=false;
+                    break;
+                }
+            }
+            if (proverka)
+                return chisla;
+            Console.WriteLine("Ошибка. Введите последовательность целых чисел.");
+        }
+    }
+    static void res(List<int> n)
+    {
+        //ф-ция для формирования и вывода результата
+        List<int> res=new List<int>(n.Count);
+        res.Add(n[0]);
+        for (int i=1; i<n.Count; i++)
+            res.Add(res[i-1]+n[i]);
+        Console.WriteLine($"Результативная последовательность: [{string.Join(", ",res)}]");
+    }
+}

@@ -1,0 +1,79 @@
+﻿Тихонова Вероника ИБ02/26б
+Тема №5
+
+Python
+
+#задача 6.5
+def vv_mass(name):
+    #ф-ция для ввода массива с проверкой
+    while True:
+        try:
+            s= input(name).split()
+            return [int(x) for x in s]
+        except EOFError:
+            print("Ошибка. Введите последовательность целых чисел.")
+        except ValueError:
+            print("Ошибка. Введите последовательность целых чисел.")
+def res(mass1,mass2):
+    #ф-ция для формирования и вывода результата
+    mass=mass1+mass2
+    mass=sorted(mass)
+    print(f"Упорядоченные по возрастанию и объединенные последовательности:[{', '.join(map(str,mass))}]")
+mass1=vv_mass("Введите первую последовательность целых чисел: ")
+mass2=vv_mass("Введите вторую последовательность целых чисел: ")
+res(mass1,mass2)
+
+
+
+
+def vv_ch(name):
+    #ф-ция для ввода числа с проверкой
+    while True:
+        n=input(name)
+        try:
+            nn=int(n)
+            if nn>0:
+                return nn
+            else:
+                print("Ошибка. Введите целое число больше 0.")
+        except:
+            print("Ошибка. Введите целое число больше 0.")
+def res(n):
+    #ф-ция для формирования и вывода результата
+    chisla = {
+    '0': 'Ноль',
+    '1': 'Один',
+    '2': 'Два',
+    '3': 'Три',
+    '4': 'Четыре',
+    '5': 'Пять',
+    '6': 'Шесть',
+    '7': 'Семь',
+    '8': 'Восемь',
+    '9': 'Девять',
+    }
+    res=[chisla[b] for b in str(n)]
+    print(" ".join(res))
+n=vv_ch("Введите число: ")
+res(n)
+
+
+#задача 6.17
+def vv_mass(name):
+    #ф-ция для ввода массива с проверкой
+    while True:
+        s= input(name).split()
+        try:
+            return [int(x) for x in s]
+        except EOFError:
+            print("Ошибка. Введите последовательность целых чисел.")
+        except ValueError:
+            print("Ошибка. Введите последовательность целых чисел.")
+def res(n):
+    #ф-ция для формирования и вывода результата
+    res=[n[0]]*len(n)
+    for i in range(1,len(n)):
+        res[i]=res[i-1]+n[i]
+    print(f"Результативная последовательность: [{', '.join(map(str,res))}]")
+n=vv_mass("Введите последовательность целых чисел: ")
+res(n)

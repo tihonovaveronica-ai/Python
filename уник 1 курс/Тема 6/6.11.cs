@@ -7,7 +7,7 @@ class Program
     const string alphabet="абвгдежзийклмнопрстуфхцчшщъыьэюя";
     static void Main()
     {
-        string key=vv_key("");
+        string key=vv_key("Введите ключ: ");
         string direction=vv_dir("Введите направление шифрования: ");
         Console.Write("Введите текст на русском языке(без «ё»): ");
         string text = Console.ReadLine();
@@ -15,6 +15,7 @@ class Program
     }
     static string vv_key(string name)
     {
+        //ф-ция для ввода ключа с проверкой
         while (true)
         {
             Console.Write(name);
@@ -24,8 +25,8 @@ class Program
                 Console.WriteLine("Ошибка: ключ должен состоять из русских букв (без «ё»).");
                 continue;
             }
-             bool proverka=true;
-             foreach(char c in s)
+            bool proverka=true;
+            foreach(char c in s)
             {
                 if(alphabet.IndexOf(char.ToLower(c))<0)
                 {
@@ -40,6 +41,7 @@ class Program
     }
     static string vv_dir(string name)
     {
+        //ф-ция для ввода направления с проверкой
         while(true)
         {
             Console.Write(name);
@@ -54,7 +56,7 @@ class Program
         //ф-ция для формирования и вывода результата
         var res=new List<char>();
         string alph2="абвгдежзийклмнопрстуфхцчшщъыьэюяабвгдежзийклмнопрстуфхцчшщъыьэюя";
-        var zaglav=new List<bool>();
+        int ind=0;
         foreach(char c in text)
         {
             char lower=char.ToLower(c);
@@ -63,7 +65,7 @@ class Program
                 res.Add(c);
                 continue;
             }
-            int sdvig=text.IndexOf(lower)%key.Length;
+            int sdvig=ind%key.Length;
             char newchar;
             if(direction=="CRYP")
                 newchar=alph2[alphabet.IndexOf(lower)+alphabet.IndexOf(key[sdvig])];
@@ -73,6 +75,7 @@ class Program
             if (char.IsUpper(c))
                 newchar = char.ToUpper(newchar);
             res.Add(newchar);
+            ind++;
         }
         Console.WriteLine(new string(res.ToArray()));
     }
