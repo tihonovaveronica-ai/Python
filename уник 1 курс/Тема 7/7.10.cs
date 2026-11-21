@@ -2,6 +2,7 @@ using System;
 using System.Security.Cryptography.X509Certificates;
 using System.Security.Principal;
 using Microsoft.VisualBasic;
+//задача 7.10
 class Program
 {
     static char[] sep = { ' ', '.', ',', ';', ':', '!', '?', '-', '(', ')', '[', ']', '{', '}', '"', '\'' }; //возможные разделители
